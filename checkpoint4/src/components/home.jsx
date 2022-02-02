@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/home.scss";
 import Joke from "./Joke";
-import getAllFacts from "../services/facts";
+import { getAllFacts } from "../services/facts";
 const Home = () => {
   //states globals variables
   const [facts, setFacts] = useState([]);
+  const [oneFact, setOneFact] = useState({}); // send to Joke Component
 
   //useEffect
   useEffect(() => {
     getAllFacts().then((result) => {
+      console.log(result.data);
       setFacts(result.data);
     });
   }, []);
@@ -56,8 +58,8 @@ const Home = () => {
           onRequestClose={closeModal}
           contentLabel="confirmation Modal"
         >
-          <div>
-            <p>hhhh</p>
+          <div className="modal">
+            <p>{oneFact.joke}</p>
           </div>
         </Modal>
         <div className="container-text-welcome">
@@ -73,8 +75,11 @@ const Home = () => {
             <Joke
               closeModal={closeModal}
               openModal={openModal}
-              key={fact.id}
-              fact={fact}
+              key={fact.id_joke}
+              id_joke={fact.id_joke}
+              joke={fact.joke}
+              category={fact.name}
+              setOneFact={setOneFact}
             />
           ))}
       </div>
