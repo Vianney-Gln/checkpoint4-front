@@ -21,7 +21,6 @@ const postData = (infosFact) => {
     method: "post",
     url: baseUrl,
     data: infosFact,
-    withCredentials: true,
   });
 };
 export { getAllFacts, getOneFact, postData };
