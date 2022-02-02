@@ -1,13 +1,23 @@
 .container-joke {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
 
   p {
     background-color: white;
-    padding: 10px;
+    padding: 0;
+    width: 80%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    span {
+      display: inline-block;
+      width: 20%;
+      padding: 10px;
+      margin-right: 10px;
+      background-color: rgb(219, 217, 217);
+    }
   }
 
   p:hover {

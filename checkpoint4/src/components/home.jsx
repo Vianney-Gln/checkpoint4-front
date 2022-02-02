@@ -1,6 +1,17 @@
+import React, { useState, useEffect } from "react";
 import "../styles/home.scss";
 import Joke from "./Joke";
+import getAllFacts from "../services/facts";
 const Home = () => {
+  //states variables
+  const [facts, setFacts] = useState([]);
+
+  useEffect(() => {
+    getAllFacts().then((result) => {
+      setFacts(result.data);
+    });
+  }, []);
+
   return (
     <div className="container-home">
       <div className="container-text-welcome">
@@ -11,7 +22,7 @@ const Home = () => {
         </p>
       </div>
 
-      <Joke />
+      {facts && facts.map((fact) => <Joke key={fact.id} fact={fact} />)}
     </div>
   );
 };

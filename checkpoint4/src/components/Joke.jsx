@@ -1,10 +1,10 @@
 import "../styles/joke.scss";
-const Joke = () => {
+const Joke = ({ fact }) => {
   return (
     <div className="container-joke">
       <p>
-        Les samouraïs tuent des mouches avec leurs sabres... Chuck Norris, lui,
-        tue des samouraïs avec des mouches
+        <span className="category">categorie:{fact.name}</span>
+        {fact.joke}
       </p>
     </div>
   );
