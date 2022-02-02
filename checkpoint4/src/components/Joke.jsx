@@ -1,10 +1,20 @@
 import "../styles/joke.scss";
-const Joke = ({ fact }) => {
+import { getOneFact } from "../services/facts";
+const Joke = ({ joke, id_joke, category, openModal, setOneFact }) => {
   return (
     <div className="container-joke">
-      <p>
-        <span className="category">categorie:{fact.name}</span>
-        {fact.joke}
+      <p
+        onClick={() => {
+          getOneFact(id_joke).then((result) => {
+            console.log(result.data);
+            setOneFact(result.data);
+          });
+          openModal();
+        }}
+      >
+        <span className="category">categorie:{category}</span>
+
+        {joke}
       </p>
     </div>
   );

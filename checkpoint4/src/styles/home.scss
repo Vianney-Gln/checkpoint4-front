@@ -17,3 +17,41 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 }
+
+//Modal
+body > div.ReactModalPortal > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .category-modal {
+    display: flex;
+    justify-content: space-between;
+    span {
+      background-color: rgb(219, 217, 217);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .update-button,
+    .delete-button {
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+      background-color: rgb(219, 217, 217);
+    }
+    .update-button:hover {
+      transform: scale(1.1);
+    }
+  }
+  .container-image-chuck {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100px;
+    }
+  }
+}
