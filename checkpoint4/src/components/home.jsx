@@ -3,6 +3,9 @@ import Modal from "react-modal";
 import "../styles/home.scss";
 import Joke from "./Joke";
 import { getAllFacts } from "../services/facts";
+
+//images
+import imageChuck from "../images/chuck.png";
 const Home = () => {
   //states globals variables
   const [facts, setFacts] = useState([]);
@@ -30,8 +33,8 @@ const Home = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "30%",
-      height: "30%",
+      width: "45%",
+      height: "45%",
       color: "black",
       backgroundColor: "white",
     },
@@ -58,9 +61,19 @@ const Home = () => {
           onRequestClose={closeModal}
           contentLabel="confirmation Modal"
         >
-          <div className="modal">
-            <p>{oneFact.joke}</p>
+          <p className="one-joke">{oneFact.joke}</p>
+          <div className="container-image-chuck">
+            <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
           </div>
+          <p className="category-modal">
+            <span>{oneFact.name}</span>
+            <button type="button" className="update-button">
+              modifier
+            </button>
+            <button type="button" className="delete-button">
+              supprimer
+            </button>
+          </p>
         </Modal>
         <div className="container-text-welcome">
           <p className="text-welcome">

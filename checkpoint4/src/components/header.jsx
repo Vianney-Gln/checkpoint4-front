@@ -1,12 +1,15 @@
 import "../styles/header.scss";
 import { Link } from "react-router-dom";
+import logoChuck from "../images/logo-chuck.png";
 
 const Header = () => {
   return (
     <div className="container-header">
       <nav>
         <ul>
-          <li>Logo</li>
+          <li>
+            <img src={logoChuck} alt="chuck-logo" />
+          </li>
           <Link to="/">
             <li>Accueil</li>
           </Link>
