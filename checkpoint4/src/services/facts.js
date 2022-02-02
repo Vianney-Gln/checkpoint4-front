@@ -11,4 +11,17 @@ const getOneFact = (id) => {
   return axios.get(`${baseUrl}/${id}`).then((result) => result);
 };
 
-export { getAllFacts, getOneFact };
+/**
+ * function posting facts to the back
+ * @param {object} infosFact
+ * @returns
+ */
+const postData = (infosFact) => {
+  return axios({
+    method: "post",
+    url: baseUrl,
+    data: infosFact,
+    withCredentials: true,
+  });
+};
+export { getAllFacts, getOneFact, postData };

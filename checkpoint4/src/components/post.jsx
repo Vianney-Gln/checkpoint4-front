@@ -4,17 +4,25 @@ import "../styles/post.scss";
 
 const Post = () => {
   //states globals variables
-  const [id_category, setId_category] = useState(undefined);
-  const [fact, setFact] = useState("");
-  console.log(id_category);
-  console.log(fact);
+  const [infosFact, setInfosFact] = useState({});
+
+  /**
+   *function getting datas from the form
+   * @param {string || number} value
+   * @param {string} key
+   */
+  const getInfos = (value, key) => {
+    const newInfos = infosFact;
+    newInfos[key] = value;
+    setInfosFact(newInfos);
+  };
   return (
     <div className="container-post-form">
       <form>
         <label htmlFor="select-category">
           <select
             onChange={(e) => {
-              setId_category(e.target.value);
+              getInfos(e.target.value, "id_category");
             }}
             name="select-category"
           >
@@ -29,7 +37,7 @@ const Post = () => {
           <textarea
             onChange={(e) => {
               setTimeout(() => {
-                setFact(e.target.value);
+                getInfos(e.target.value, "joke");
               }, 1000);
             }}
             name="facts"
