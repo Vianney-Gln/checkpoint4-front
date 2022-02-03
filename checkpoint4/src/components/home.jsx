@@ -15,13 +15,15 @@ const Home = () => {
   const [updateMessage, setUpdateMessage] = useState("");
   const [operation, setOperation] = useState("");
   const [infosUpdate, setInfosUpdate] = useState({});
+  const [nameCategory, setNameCategory] = useState("");
+  console.log(nameCategory);
   //useEffect
   useEffect(() => {
-    getAllFacts().then((result) => {
+    getAllFacts(nameCategory).then((result) => {
       console.log(result.data);
       setFacts(result.data);
     });
-  }, []);
+  }, [nameCategory]);
 
   //function running updateData,redirect and send message if success or not
   const runUpdateData = () => {
@@ -194,6 +196,43 @@ const Home = () => {
             toujours voulu réaliser pour le fun, et qui mettra en pratique
             toutes les compétences apprises durant ces 5 mois de formation.{" "}
           </p>
+          <div className="filtres">
+            <button
+              value={"pas drole"}
+              onClick={(e) => setNameCategory(e.target.value)}
+              type="button"
+            >
+              pas drole
+            </button>
+            <button
+              value={"drole"}
+              onClick={(e) => setNameCategory(e.target.value)}
+              type="button"
+            >
+              drole
+            </button>
+            <button
+              value={"trash"}
+              onClick={(e) => setNameCategory(e.target.value)}
+              type="button"
+            >
+              trash
+            </button>
+            <button
+              value={"les plus connues"}
+              onClick={(e) => setNameCategory(e.target.value)}
+              type="button"
+            >
+              les plus connues
+            </button>
+            <button
+              type="button"
+              value={""}
+              onClick={(e) => setNameCategory(e.target.value)}
+            >
+              enlever le filtre
+            </button>
+          </div>
         </div>
 
         {facts &&
