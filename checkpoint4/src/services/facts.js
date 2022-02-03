@@ -2,8 +2,10 @@ import axios from "axios";
 const baseUrl = "http://localhost:3001/api/chuckNorris/facts";
 
 //function getting all facts
-const getAllFacts = () => {
-  return axios.get(baseUrl).then((result) => result);
+const getAllFacts = (name) => {
+  if (name)
+    return axios.get(`${baseUrl}?name=${name}`).then((result) => result);
+  else return axios.get(baseUrl).then((result) => result);
 };
 
 //function getting one fact by his id
