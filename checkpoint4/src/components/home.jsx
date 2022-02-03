@@ -205,11 +205,11 @@ const Home = () => {
               pas drole
             </button>
             <button
-              value={"drole"}
+              value={"très drole"}
               onClick={(e) => setNameCategory(e.target.value)}
               type="button"
             >
-              drole
+              très drole
             </button>
             <button
               value={"trash"}
