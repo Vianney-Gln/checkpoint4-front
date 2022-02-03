@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/home.scss";
 import Joke from "./Joke";
-import { getAllFacts, deleteData } from "../services/facts";
+import { getAllFacts, deleteData, updateData } from "../services/facts";
 
 //images
 import imageChuck from "../images/chuck.png";
@@ -12,6 +12,7 @@ const Home = () => {
   const [facts, setFacts] = useState([]);
   const [oneFact, setOneFact] = useState({}); // send to Joke Component
   const [deleteMessage, setDeleteMessage] = useState("");
+  const [updateMessage, setUpdateMessage] = useState("");
   const [operation, setOperation] = useState("");
   const [infosUpdate, setInfosUpdate] = useState({});
   //useEffect
@@ -22,6 +23,29 @@ const Home = () => {
     });
   }, []);
 
+  //function running updateData,redirect and send message if success or not
+  const runUpdateData = () => {
+    updateData(infosUpdate, oneFact.id)
+      .then(() => {
+        setUpdateMessage(
+          "fact modifié avec succès, vous serez redirigé vers l'accueil."
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
+
+      .catch((err) => {
+        console.log(err);
+        setUpdateMessage("vérifiez vos champs");
+      });
+  };
+
+  /**
+   * function getting data from form for updating
+   * @param {number || string} value
+   * @param {string} key
+   */
   const getInfosUpdate = (value, key) => {
     const newInfos = infosUpdate;
     newInfos[key] = value;
@@ -119,6 +143,13 @@ const Home = () => {
                 </select>
               </label>
               <button
+                type="button"
+                onClick={() => runUpdateData()}
+                className="validate-update"
+              >
+                Valider
+              </button>
+              <button
                 onClick={() => setOperation("")}
                 className="escape-update"
               >
@@ -146,6 +177,11 @@ const Home = () => {
               supprimer
             </button>
           </p>
+          {updateMessage && (
+            <p>
+              <span>{updateMessage}</span>
+            </p>
+          )}
           {deleteMessage && (
             <p>
               <span>{deleteMessage}</span>
