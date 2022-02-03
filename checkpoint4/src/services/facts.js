@@ -23,12 +23,12 @@ const postData = (infosFact) => {
     data: infosFact,
   });
 };
-
-const deleteData = (factToDelete) => {
-  return axios({
-    method: "delete",
-    url: baseUrl,
-    data: factToDelete,
-  });
+/**
+ *
+ * @param {number} id
+ * @returns
+ */
+const deleteData = (id) => {
+  return axios.delete(`${baseUrl}/${id}`);
 };
 export { getAllFacts, getOneFact, postData, deleteData };
