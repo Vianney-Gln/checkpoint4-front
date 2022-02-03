@@ -79,7 +79,9 @@ const Post = () => {
           </div>
         </form>
       </div>
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && (
+        <p className="message-success-post">{successMessage}</p>
+      )}
     </>
   );
 };
