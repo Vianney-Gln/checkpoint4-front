@@ -12,6 +12,7 @@ const Home = () => {
   const [facts, setFacts] = useState([]);
   const [oneFact, setOneFact] = useState({}); // send to Joke Component
   const [deleteMessage, setDeleteMessage] = useState("");
+  const [operation, setOperation] = useState("");
   //useEffect
   useEffect(() => {
     getAllFacts().then((result) => {
@@ -19,6 +20,10 @@ const Home = () => {
       setFacts(result.data);
     });
   }, []);
+  //function reinitialize operation state on click everywhere
+  document.addEventListener("click", () => {
+    setOperation("");
+  });
 
   //function calling deleteData , redirect and send message if success or fail
 
@@ -81,12 +86,41 @@ const Home = () => {
           contentLabel="confirmation Modal"
         >
           <p className="one-joke">{oneFact.joke}</p>
-          <div className="container-image-chuck">
-            <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
-          </div>
+          {operation !== "update" ? (
+            <div className="container-image-chuck">
+              <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
+            </div>
+          ) : (
+            <form>
+              <label htmlFor="update-facts">
+                <input
+                  type="text"
+                  name="update-facts"
+                  id="update-facts"
+                  placeholder="modifier le fact ici"
+                />
+              </label>
+              <label htmlFor="select-category">
+                <select name="select-category">
+                  <option value={""}>--category--</option>
+                  <option value={1}>pas drôle</option>
+                  <option value={2}>très drôle</option>
+                  <option value={3}>trash</option>
+                  <option value={4}>les plus connues</option>
+                </select>
+              </label>
+            </form>
+          )}
           <p className="category-modal">
             <span>{oneFact.name}</span>
-            <button type="button" className="update-button">
+            <button
+              type="button"
+              className="update-button"
+              onClick={() => {
+                console.log("modifier");
+                setOperation("update");
+              }}
+            >
               modifier
             </button>
             <button
