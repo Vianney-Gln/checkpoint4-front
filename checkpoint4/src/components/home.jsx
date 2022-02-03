@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/home.scss";
 import Joke from "./Joke";
-import { getAllFacts } from "../services/facts";
+import { getAllFacts, deleteData } from "../services/facts";
 
 //images
 import imageChuck from "../images/chuck.png";
+
 const Home = () => {
   //states globals variables
   const [facts, setFacts] = useState([]);
   const [oneFact, setOneFact] = useState({}); // send to Joke Component
-
+  const [deleteMessage, setDeleteMessage] = useState("");
   //useEffect
   useEffect(() => {
     getAllFacts().then((result) => {
@@ -18,6 +19,24 @@ const Home = () => {
       setFacts(result.data);
     });
   }, []);
+
+  //function calling deleteData , redirect and send message if success or fail
+
+  const runDeleteData = () => {
+    deleteData(oneFact.id)
+      .then(() => {
+        setDeleteMessage(
+          "fact supprimé avec succes, vous allez être redirigé à l'accueil"
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+        setDeleteMessage("erreur lors de la suppression du fact");
+      });
+  };
 
   //Modal
 
@@ -70,10 +89,19 @@ const Home = () => {
             <button type="button" className="update-button">
               modifier
             </button>
-            <button type="button" className="delete-button">
+            <button
+              type="button"
+              className="delete-button"
+              onClick={() => runDeleteData()}
+            >
               supprimer
             </button>
           </p>
+          {deleteMessage && (
+            <p>
+              <span>{deleteMessage}</span>
+            </p>
+          )}
         </Modal>
         <div className="container-text-welcome">
           <p className="text-welcome">
