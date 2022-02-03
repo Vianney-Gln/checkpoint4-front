@@ -124,4 +124,23 @@ body > div.ReactModalPortal > div > div {
       }
     }
   }
+  .update-form {
+    .escape-update {
+      margin-left: 10px;
+    }
+
+    input {
+      height: 30px;
+    }
+    select,
+    .validate-update,
+    .escape-update {
+      font-size: 0.9rem;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      padding: 1px;
+      background-color: rgb(219, 217, 217);
+    }
+  }
 }
