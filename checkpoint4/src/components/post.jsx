@@ -43,21 +43,7 @@ const Post = () => {
     <>
       <div className="container-post-form">
         <form>
-          <label htmlFor="select-category">
-            <select
-              onChange={(e) => {
-                getInfos(e.target.value, "id_category");
-              }}
-              name="select-category"
-            >
-              <option value={""}>--category--</option>
-              <option value={1}>pas drôle</option>
-              <option value={2}>très drôle</option>
-              <option value={3}>trash</option>
-              <option value={4}>les plus connues</option>
-            </select>
-          </label>
-          <label htmlFor="facts">
+          <label className="label-textarea" htmlFor="facts">
             <textarea
               onChange={(e) => {
                 setTimeout(() => {
@@ -69,10 +55,28 @@ const Post = () => {
               placeholder="écrivez une joke sur Chuck Norris ici"
             />
           </label>
+          <div className="container-select-button">
+            <div className="select-button">
+              <label className="label-select" htmlFor="select-category">
+                <select
+                  onChange={(e) => {
+                    getInfos(e.target.value, "id_category");
+                  }}
+                  name="select-category"
+                >
+                  <option value={""}>--category--</option>
+                  <option value={1}>pas drôle</option>
+                  <option value={2}>très drôle</option>
+                  <option value={3}>trash</option>
+                  <option value={4}>les plus connues</option>
+                </select>
+              </label>
 
-          <button onClick={() => post()} type="button">
-            envoyer
-          </button>
+              <button onClick={() => post()} type="button">
+                envoyer
+              </button>
+            </div>
+          </div>
         </form>
       </div>
       {successMessage && <p>{successMessage}</p>}
