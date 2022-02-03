@@ -31,4 +31,13 @@ const postData = (infosFact) => {
 const deleteData = (id) => {
   return axios.delete(`${baseUrl}/${id}`);
 };
-export { getAllFacts, getOneFact, postData, deleteData };
+
+const updateData = (infosUpdate, id) => {
+  return axios({
+    method: "put",
+    url: `${baseUrl}/${id}`,
+    data: infosUpdate,
+  });
+};
+
+export { getAllFacts, getOneFact, postData, deleteData, updateData };
