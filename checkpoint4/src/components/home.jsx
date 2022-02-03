@@ -13,6 +13,7 @@ const Home = () => {
   const [oneFact, setOneFact] = useState({}); // send to Joke Component
   const [deleteMessage, setDeleteMessage] = useState("");
   const [operation, setOperation] = useState("");
+  const [infosUpdate, setInfosUpdate] = useState({});
   //useEffect
   useEffect(() => {
     getAllFacts().then((result) => {
@@ -20,10 +21,12 @@ const Home = () => {
       setFacts(result.data);
     });
   }, []);
-  //function reinitialize operation state on click everywhere
-  document.addEventListener("click", () => {
-    setOperation("");
-  });
+
+  const getInfosUpdate = (value, key) => {
+    const newInfos = infosUpdate;
+    newInfos[key] = value;
+    setInfosUpdate(newInfos);
+  };
 
   //function calling deleteData , redirect and send message if success or fail
 
@@ -94,6 +97,7 @@ const Home = () => {
             <form>
               <label htmlFor="update-facts">
                 <input
+                  onChange={(e) => getInfosUpdate(e.target.value, "joke")}
                   type="text"
                   name="update-facts"
                   id="update-facts"
@@ -101,7 +105,12 @@ const Home = () => {
                 />
               </label>
               <label htmlFor="select-category">
-                <select name="select-category">
+                <select
+                  onChange={(e) =>
+                    getInfosUpdate(e.target.value, "id_category")
+                  }
+                  name="select-category"
+                >
                   <option value={""}>--category--</option>
                   <option value={1}>pas drôle</option>
                   <option value={2}>très drôle</option>
@@ -109,6 +118,12 @@ const Home = () => {
                   <option value={4}>les plus connues</option>
                 </select>
               </label>
+              <button
+                onClick={() => setOperation("")}
+                className="escape-update"
+              >
+                X
+              </button>
             </form>
           )}
           <p className="category-modal">
