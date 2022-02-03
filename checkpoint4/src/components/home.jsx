@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/home.scss";
 import Joke from "./Joke";
-import { getAllFacts, deleteData } from "../services/facts";
+import { getAllFacts, deleteData, updateData } from "../services/facts";
 
 //images
 import imageChuck from "../images/chuck.png";
@@ -12,6 +12,9 @@ const Home = () => {
   const [facts, setFacts] = useState([]);
   const [oneFact, setOneFact] = useState({}); // send to Joke Component
   const [deleteMessage, setDeleteMessage] = useState("");
+  const [updateMessage, setUpdateMessage] = useState("");
+  const [operation, setOperation] = useState("");
+  const [infosUpdate, setInfosUpdate] = useState({});
   //useEffect
   useEffect(() => {
     getAllFacts().then((result) => {
@@ -19,6 +22,35 @@ const Home = () => {
       setFacts(result.data);
     });
   }, []);
+
+  //function running updateData,redirect and send message if success or not
+  const runUpdateData = () => {
+    updateData(infosUpdate, oneFact.id)
+      .then(() => {
+        setUpdateMessage(
+          "fact modifié avec succès, vous serez redirigé vers l'accueil."
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
+
+      .catch((err) => {
+        console.log(err);
+        setUpdateMessage("vérifiez vos champs");
+      });
+  };
+
+  /**
+   * function getting data from form for updating
+   * @param {number || string} value
+   * @param {string} key
+   */
+  const getInfosUpdate = (value, key) => {
+    const newInfos = infosUpdate;
+    newInfos[key] = value;
+    setInfosUpdate(newInfos);
+  };
 
   //function calling deleteData , redirect and send message if success or fail
 
@@ -81,12 +113,60 @@ const Home = () => {
           contentLabel="confirmation Modal"
         >
           <p className="one-joke">{oneFact.joke}</p>
-          <div className="container-image-chuck">
-            <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
-          </div>
+          {operation !== "update" ? (
+            <div className="container-image-chuck">
+              <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
+            </div>
+          ) : (
+            <form>
+              <label htmlFor="update-facts">
+                <input
+                  onChange={(e) => getInfosUpdate(e.target.value, "joke")}
+                  type="text"
+                  name="update-facts"
+                  id="update-facts"
+                  placeholder="modifier le fact ici"
+                />
+              </label>
+              <label htmlFor="select-category">
+                <select
+                  onChange={(e) =>
+                    getInfosUpdate(e.target.value, "id_category")
+                  }
+                  name="select-category"
+                >
+                  <option value={""}>--category--</option>
+                  <option value={1}>pas drôle</option>
+                  <option value={2}>très drôle</option>
+                  <option value={3}>trash</option>
+                  <option value={4}>les plus connues</option>
+                </select>
+              </label>
+              <button
+                type="button"
+                onClick={() => runUpdateData()}
+                className="validate-update"
+              >
+                Valider
+              </button>
+              <button
+                onClick={() => setOperation("")}
+                className="escape-update"
+              >
+                X
+              </button>
+            </form>
+          )}
           <p className="category-modal">
             <span>{oneFact.name}</span>
-            <button type="button" className="update-button">
+            <button
+              type="button"
+              className="update-button"
+              onClick={() => {
+                console.log("modifier");
+                setOperation("update");
+              }}
+            >
               modifier
             </button>
             <button
@@ -97,6 +177,11 @@ const Home = () => {
               supprimer
             </button>
           </p>
+          {updateMessage && (
+            <p>
+              <span>{updateMessage}</span>
+            </p>
+          )}
           {deleteMessage && (
             <p>
               <span>{deleteMessage}</span>
