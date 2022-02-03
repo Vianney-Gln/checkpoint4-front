@@ -16,11 +16,10 @@ const Home = () => {
   const [operation, setOperation] = useState("");
   const [infosUpdate, setInfosUpdate] = useState({});
   const [nameCategory, setNameCategory] = useState("");
-  console.log(nameCategory);
+
   //useEffect
   useEffect(() => {
     getAllFacts(nameCategory).then((result) => {
-      console.log(result.data);
       setFacts(result.data);
     });
   }, [nameCategory]);
