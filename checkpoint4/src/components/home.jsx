@@ -234,19 +234,20 @@ const Home = () => {
             </button>
           </div>
         </div>
-
-        {facts &&
-          facts.map((fact) => (
-            <Joke
-              closeModal={closeModal}
-              openModal={openModal}
-              key={fact.id_joke}
-              id_joke={fact.id_joke}
-              joke={fact.joke}
-              category={fact.name}
-              setOneFact={setOneFact}
-            />
-          ))}
+        <div className="list-facts">
+          {facts &&
+            facts.map((fact) => (
+              <Joke
+                closeModal={closeModal}
+                openModal={openModal}
+                key={fact.id_joke}
+                id_joke={fact.id_joke}
+                joke={fact.joke}
+                category={fact.name}
+                setOneFact={setOneFact}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
