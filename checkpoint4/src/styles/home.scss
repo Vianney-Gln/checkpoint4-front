@@ -1,0 +1,185 @@
+.container-home {
+  width: 100%;
+  height: 300px;
+  .container-text-welcome {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .filtres {
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        padding: 10px;
+        width: 150px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #dbd9d9;
+        transition: 0.2s ease;
+      }
+      button:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .text-welcome {
+    width: 50%;
+    font-size: 1.4rem;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+  .list-facts {
+    padding-bottom: 40px;
+  }
+}
+
+//Modal desktop
+body > div.ReactModalPortal > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .one-joke {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgb(219, 217, 217);
+  }
+  .category-modal {
+    display: flex;
+    justify-content: space-between;
+    span {
+      background-color: rgb(219, 217, 217);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .update-button,
+    .delete-button {
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+      background-color: rgb(219, 217, 217);
+    }
+    .update-button:hover,
+    .delete-button:hover {
+      transform: scale(1.1);
+    }
+  }
+  .container-image-chuck {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100px;
+    }
+  }
+  .update-form {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    .escape-update {
+      margin-left: 10px;
+    }
+
+    input {
+      height: 30px;
+      width: 250px;
+    }
+    select,
+    .validate-update,
+    .escape-update {
+      font-size: 1rem;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+      background-color: rgb(219, 217, 217);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .validate-update:hover,
+    .escape-update:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+//mobile
+
+@media screen and (max-width: 700px) {
+  .container-home {
+    width: 100%;
+    height: 250px;
+
+    .container-text-welcome {
+      p {
+        font-size: 1rem;
+        width: 80%;
+      }
+      .filtres {
+        width: 100%;
+        justify-content: center;
+
+        button {
+          padding: 2px;
+          width: 50px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  //Modal mobile
+  body > div.ReactModalPortal > div > div {
+    .category-modal {
+      span {
+        font-size: 0.8rem;
+        padding: 1px;
+      }
+      .update-button,
+      .delete-button {
+        font-size: 0.8rem;
+        padding: 1px;
+      }
+    }
+    .container-image-chuck {
+      img {
+        width: 65px;
+      }
+    }
+    .update-form {
+      display: block;
+
+      .escape-update {
+        margin-left: 10px;
+      }
+
+      input {
+        height: 30px;
+        width: 170px;
+      }
+      select,
+      .validate-update,
+      .escape-update {
+        font-size: 0.9rem;
+        margin-top: 15px;
+        border: none;
+        border-radius: 5px;
+        padding: 1px;
+        background-color: rgb(219, 217, 217);
+      }
+    }
+  }
+}
