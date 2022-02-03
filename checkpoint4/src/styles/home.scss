@@ -38,7 +38,7 @@
   }
 }
 
-//Modal
+//Modal desktop
 body > div.ReactModalPortal > div > div {
   display: flex;
   flex-direction: column;
@@ -102,6 +102,25 @@ body > div.ReactModalPortal > div > div {
           width: 50px;
           margin-left: 10px;
         }
+      }
+    }
+  }
+  //Modal mobile
+  body > div.ReactModalPortal > div > div {
+    .category-modal {
+      span {
+        font-size: 0.8rem;
+        padding: 1px;
+      }
+      .update-button,
+      .delete-button {
+        font-size: 0.8rem;
+        padding: 1px;
+      }
+    }
+    .container-image-chuck {
+      img {
+        width: 65px;
       }
     }
   }
