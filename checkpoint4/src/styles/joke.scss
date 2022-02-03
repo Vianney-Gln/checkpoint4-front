@@ -25,3 +25,15 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .container-joke {
+    p {
+      text-align: center;
+      min-height: 100px;
+      span {
+        width: 100%;
+      }
+    }
+  }
+}

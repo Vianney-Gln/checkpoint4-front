@@ -86,8 +86,8 @@ const Home = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "45%",
-      height: "45%",
+      width: "55%",
+      height: "55%",
       color: "black",
       backgroundColor: "white",
     },
@@ -120,7 +120,7 @@ const Home = () => {
               <img src={imageChuck} alt="Chuck" title="Chuck te surveille..." />
             </div>
           ) : (
-            <form>
+            <form className="update-form">
               <label htmlFor="update-facts">
                 <input
                   onChange={(e) => getInfosUpdate(e.target.value, "joke")}
@@ -234,19 +234,20 @@ const Home = () => {
             </button>
           </div>
         </div>
-
-        {facts &&
-          facts.map((fact) => (
-            <Joke
-              closeModal={closeModal}
-              openModal={openModal}
-              key={fact.id_joke}
-              id_joke={fact.id_joke}
-              joke={fact.joke}
-              category={fact.name}
-              setOneFact={setOneFact}
-            />
-          ))}
+        <div className="list-facts">
+          {facts &&
+            facts.map((fact) => (
+              <Joke
+                closeModal={closeModal}
+                openModal={openModal}
+                key={fact.id_joke}
+                id_joke={fact.id_joke}
+                joke={fact.joke}
+                category={fact.name}
+                setOneFact={setOneFact}
+              />
+            ))}
+        </div>
       </div>
     </>
   );

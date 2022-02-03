@@ -1,7 +1,9 @@
+import "../styles/footer.scss";
 const Footer = () => {
   return (
     <div className="container-footer">
-      <p>footer</p>
+      <p>© Copyright 2021 - Vianney Geloen. Tous droits réservés.</p>
+      <p>Revenir en haut | A propos | Compétences | Portfolio | Contact</p>
     </div>
   );
 };
