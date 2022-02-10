@@ -122,8 +122,11 @@ const Home = () => {
             <form className="update-form">
               <label htmlFor="update-facts">
                 <input
-                  onChange={(e) => getInfosUpdate(e.target.value, "joke")}
+                  onChange={(e) => {
+                    getInfosUpdate(e.target.value, "joke");
+                  }}
                   type="text"
+                  defaultValue={oneFact.joke}
                   name="update-facts"
                   id="update-facts"
                   placeholder="modifier le fact ici"
